@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unity Game Portal</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Unity Game Portal</h1>
+    <a href="/upload">Upload a New Game</a>
+    <hr>
+
+    {% for game in games %}
+        <div style="margin-bottom: 30px;">
+            <img src="{{ game[3] }}" alt="Thumbnail" width="200"><br>
+            <h2>{{ game[0] }}</h2>
+            <p>{{ game[2] }}</p>
+            <a href="/play/{{ game[1] }}">Play Game</a>
+
+            <form action="/delete/{{ game[1] }}" method="POST" style="display:inline;">
+                <button type="submit" onclick="return confirm('Delete this game?')">Delete</button>
+            </form>
+        </div>
+    {% endfor %}
+
+</body>
+</html>
+
